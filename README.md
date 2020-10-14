@@ -1,5 +1,3 @@
-# React/Redux/Router Starter Project
+# Cory Bass' React Portfolio
 
-> Provided for the students of the [Bottega Code School](https://bottega.tech/)
-
-*Fork from [es6-webpack2-starter](https://github.com/micooz/es6-webpack2-starter)*
+- An elegant display of past projects, the creator and other stuff I haven't thought of yet.
