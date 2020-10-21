@@ -1,10 +1,11 @@
 import React, { Component } from "react";
+import axios from "axios";
 
 import PortfolioItem from "./portfolio-item";
 
 export default class PortfolioContainer extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       pageTitle: "Welcome to my portfolio",
@@ -30,6 +31,18 @@ export default class PortfolioContainer extends Component {
     };
 
     this.handleFilter = this.handleFilter.bind(this);
+    this.getPortfolioItems = this.getPortfolioItems.bind(this);
+  }
+
+  getPortfolioItems() {
+    axios
+      .get("https://corybass.devcamp.space/portfolio/portfolio_items")
+      .then((response) => {
+        console.log("response data", response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   handleFilter(filter) {
@@ -55,6 +68,7 @@ export default class PortfolioContainer extends Component {
 
   render() {
     if (this.state.isLoading) return <div>Loading...</div>;
+    this.getPortfolioItems();
     return (
       <div>
         <h2>{this.state.pageTitle}</h2>
