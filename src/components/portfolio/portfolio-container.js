@@ -10,35 +10,19 @@ export default class PortfolioContainer extends Component {
     this.state = {
       pageTitle: "Welcome to my portfolio",
       isLoading: false,
-      data: [
-        { title: "Quip", category: "eCommerce", slug: "quip" },
-        {
-          title: "Eventbrite",
-          category: "Scheduling",
-          slug: "eventbrite",
-        },
-        {
-          title: "Ministry Safe",
-          category: "Enterprise",
-          slug: "ministry-safe",
-        },
-        {
-          title: "Swingaway",
-          category: "eCommerce",
-          slug: "swingaway",
-        },
-      ],
+      data: [],
     };
 
     this.handleFilter = this.handleFilter.bind(this);
-    this.getPortfolioItems = this.getPortfolioItems.bind(this);
   }
 
   getPortfolioItems() {
     axios
       .get("https://corybass.devcamp.space/portfolio/portfolio_items")
       .then((response) => {
-        console.log("response data", response);
+        this.setState({
+          data: response.data.portfolio_items,
+        });
       })
       .catch((error) => {
         console.log(error);
@@ -55,20 +39,24 @@ export default class PortfolioContainer extends Component {
 
   portfolioItems() {
     return this.state.data.map((item) => {
+      console.log("item data", item);
       return (
         <PortfolioItem
-          title={item.title}
-          url={"google.com"}
-          slug={item.slug}
-          key={item.title}
+          title={item.name}
+          url={item.url}
+          slug={item.id}
+          key={item.id}
         />
       );
     });
   }
 
+  componentDidMount() {
+    this.getPortfolioItems();
+  }
+
   render() {
     if (this.state.isLoading) return <div>Loading...</div>;
-    this.getPortfolioItems();
     return (
       <div>
         <h2>{this.state.pageTitle}</h2>
