@@ -12,6 +12,8 @@ export default function PortfolioItem(props) {
 
   return (
     <div>
+      <img src={thumb_image_url} />
+      <img src={logo_url} />
       <div>{description}</div>
       <Link to={`/portfolio/${id}`}>Link</Link>
     </div>
