@@ -18,9 +18,13 @@ export default function PortfolioItem(props) {
           backgroundImage: "url(" + thumb_image_url + ")",
         }}
       />
-      <img src={logo_url} />
-      <div>{description}</div>
-      <Link to={`/portfolio/${id}`}>Link</Link>
+      <div className="img-text-wrapper">
+        <div className="logo-wrapper">
+          <img src={logo_url} alt="Logo" />
+        </div>
+
+        <div className="subtitle">{description}</div>
+      </div>
     </div>
   );
 }
