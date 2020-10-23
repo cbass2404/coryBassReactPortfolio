@@ -42,7 +42,7 @@ class Login extends Component {
           });
         }
       })
-      .catch((error) => {
+      .catch(() => {
         this.setState({
           errorText: "An error occurred...",
         });
