@@ -19,7 +19,8 @@ class Login extends Component {
   }
 
   handleSubmit(e) {
-    console.log("Handle submit", e);
+    console.log("Handle submit", this.state.email, this.state.password);
+    e.preventDefault();
   }
 
   render() {
