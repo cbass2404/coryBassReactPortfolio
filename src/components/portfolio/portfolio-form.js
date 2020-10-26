@@ -46,7 +46,7 @@ class PortfolioForm extends Component {
         { withCredentials: true }
       )
       .then((res) => {
-        console.log("Response:", res);
+        this.props.handleSuccessfulFormSubmission(res.data.portfolio_item);
       })
       .catch((e) => {
         console.log("portfolio form handleSubmit error", e);

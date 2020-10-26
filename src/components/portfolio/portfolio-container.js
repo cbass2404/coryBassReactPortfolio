@@ -18,7 +18,9 @@ export default class PortfolioContainer extends Component {
 
   getPortfolioItems() {
     axios
-      .get("https://corybass.devcamp.space/portfolio/portfolio_items")
+      .get(
+        "https://corybass.devcamp.space/portfolio/portfolio_items?order_by=created_at&direction=desc"
+      )
       .then((response) => {
         this.setState({
           data: response.data.portfolio_items,

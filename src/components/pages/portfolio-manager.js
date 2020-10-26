@@ -18,9 +18,9 @@ class PortfolioManager extends Component {
   }
 
   handleSuccessfulFormSubmission(portfolioItem) {
-    // TODO
-    // update portfolioItems state
-    // and add the portfolioItem to the list
+    this.setState({
+      portfolioItems: [portfolioItem].concat(this.state.portfolioItems),
+    });
   }
 
   handleFormSubmissionError(err) {
@@ -29,9 +29,12 @@ class PortfolioManager extends Component {
 
   getPortfolioItems() {
     axios
-      .get("https://corybass.devcamp.space/portfolio/portfolio_items", {
-        withCredentials: true,
-      })
+      .get(
+        "https://corybass.devcamp.space/portfolio/portfolio_items?order_by=created_at&direction=desc",
+        {
+          withCredentials: true,
+        }
+      )
       .then((res) => {
         this.setState({
           portfolioItems: [...res.data.portfolio_items],
