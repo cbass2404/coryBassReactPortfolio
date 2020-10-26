@@ -99,7 +99,7 @@ class PortfolioForm extends Component {
           </div>
 
           <div>
-            <input
+            <textarea
               type="text"
               name="description"
               placeholder="Description"
