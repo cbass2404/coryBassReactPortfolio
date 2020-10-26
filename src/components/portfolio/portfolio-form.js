@@ -65,6 +65,7 @@ class PortfolioForm extends Component {
               onChange={this.handleChange}
             />
           </div>
+
           <div>
             <input
               type="text"
@@ -82,6 +83,7 @@ class PortfolioForm extends Component {
               onChange={this.handleChange}
             />
           </div>
+
           <div>
             <input
               type="text"
