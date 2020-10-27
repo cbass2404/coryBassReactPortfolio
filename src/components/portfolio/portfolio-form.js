@@ -57,6 +57,10 @@ class PortfolioForm extends Component {
     formData.append("portfolio_item[category]", this.state.category);
     formData.append("portfolio_item[position]", this.state.position);
 
+    if (this.state.thumb_image) {
+      formData.append("portfolio_item[thumb_image]", this.state.thumb_image);
+    }
+
     return formData;
   }
 
