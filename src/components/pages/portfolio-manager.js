@@ -15,7 +15,10 @@ class PortfolioManager extends Component {
       this
     );
     this.handleFormSubmissionError = this.handleFormSubmissionError.bind(this);
+    this.handleDeleteClick = this.handleDeleteClick.bind(this);
   }
+
+  handleDeleteClick(portfolioItem) {}
 
   handleSuccessfulFormSubmission(portfolioItem) {
     this.setState({
@@ -59,7 +62,10 @@ class PortfolioManager extends Component {
           />
         </div>
         <div className="right-column">
-          <PortfolioSidebarList data={this.state.portfolioItems} />
+          <PortfolioSidebarList
+            data={this.state.portfolioItems}
+            handleDeleteClick={this.handleDeleteClick}
+          />
         </div>
       </div>
     );
