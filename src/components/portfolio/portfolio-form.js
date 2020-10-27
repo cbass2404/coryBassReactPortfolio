@@ -24,6 +24,13 @@ class PortfolioForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.componentConfig = this.componentConfig.bind(this);
     this.djsConfig = this.djsConfig.bind(this);
+    this.handleThumbDrop = this.handleThumbDrop.bind(this);
+  }
+
+  handleThumbDrop() {
+    return {
+      addedfile: (file) => this.setState({ thumb_image: file }),
+    };
   }
 
   componentConfig() {
@@ -133,6 +140,7 @@ class PortfolioForm extends Component {
             <DropzoneComponent
               config={this.componentConfig()}
               djsConfig={this.djsConfig()}
+              eventHandlers={this.handleThumbDrop()}
             ></DropzoneComponent>
           </div>
 
