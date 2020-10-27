@@ -13,7 +13,7 @@ class PortfolioForm extends Component {
       name: "",
       description: "",
       category: "eCommerce",
-      postion: "",
+      position: "",
       url: "",
       thumb_image: "",
       banner_image: "",
@@ -27,6 +27,10 @@ class PortfolioForm extends Component {
     this.handleThumbDrop = this.handleThumbDrop.bind(this);
     this.handleBannerDrop = this.handleBannerDrop.bind(this);
     this.handleLogoDrop = this.handleLogoDrop.bind(this);
+
+    this.thumbRef = React.createRef();
+    this.bannerRef = React.createRef();
+    this.logoRef = React.createRef();
   }
 
   handleThumbDrop() {
@@ -101,6 +105,21 @@ class PortfolioForm extends Component {
       )
       .then((res) => {
         this.props.handleSuccessfulFormSubmission(res.data.portfolio_item);
+
+        this.setState({
+          name: "",
+          description: "",
+          category: "eCommerce",
+          position: "",
+          url: "",
+          thumb_image: "",
+          banner_image: "",
+          logo: "",
+        });
+
+        [this.thumbRef, this.bannerRef, this.logoRef].forEach((ref) => {
+          ref.current.dropzone.removeAllFiles();
+        });
       })
       .catch((e) => {
         console.log("portfolio form handleSubmit error", e);
@@ -161,9 +180,9 @@ class PortfolioForm extends Component {
               onChange={this.handleChange}
             />
           </div>
-
           <div className="image-uploaders">
             <DropzoneComponent
+              ref={this.thumbRef}
               config={this.componentConfig()}
               djsConfig={this.djsConfig()}
               eventHandlers={this.handleThumbDrop()}
@@ -172,6 +191,7 @@ class PortfolioForm extends Component {
             </DropzoneComponent>
 
             <DropzoneComponent
+              ref={this.bannerRef}
               config={this.componentConfig()}
               djsConfig={this.djsConfig()}
               eventHandlers={this.handleBannerDrop()}
@@ -180,6 +200,7 @@ class PortfolioForm extends Component {
             </DropzoneComponent>
 
             <DropzoneComponent
+              ref={this.logoRef}
               config={this.componentConfig()}
               djsConfig={this.djsConfig()}
               eventHandlers={this.handleLogoDrop()}
