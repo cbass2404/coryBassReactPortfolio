@@ -18,7 +18,25 @@ class PortfolioManager extends Component {
     this.handleDeleteClick = this.handleDeleteClick.bind(this);
   }
 
-  handleDeleteClick(portfolioItem) {}
+  handleDeleteClick(portfolioItem) {
+    axios
+      .delete(
+        `https://corybass.devcamp.space/portfolio/portfolio_items/${portfolioItem.id}`,
+        { withCredentials: true }
+      )
+      .then((res) => {
+        this.setState({
+          portfolioItems: this.state.portfolioItems.filter((item) => {
+            return item.id !== portfolioItem.id;
+          }),
+        });
+
+        return response.data;
+      })
+      .catch((err) => {
+        console.log("handleDeleteClick error", err);
+      });
+  }
 
   handleSuccessfulFormSubmission(portfolioItem) {
     this.setState({
