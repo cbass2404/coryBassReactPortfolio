@@ -186,7 +186,7 @@ class PortfolioForm extends Component {
             djsConfig={this.djsConfig()}
             eventHandlers={this.handleThumbDrop()}
           >
-            Thumb
+            <div className="dz-message">Thumbnail</div>
           </DropzoneComponent>
 
           <DropzoneComponent
@@ -195,7 +195,7 @@ class PortfolioForm extends Component {
             djsConfig={this.djsConfig()}
             eventHandlers={this.handleBannerDrop()}
           >
-            Banner
+            <div className="dz-message">Banner</div>
           </DropzoneComponent>
 
           <DropzoneComponent
@@ -204,12 +204,14 @@ class PortfolioForm extends Component {
             djsConfig={this.djsConfig()}
             eventHandlers={this.handleLogoDrop()}
           >
-            Logo
+            <div className="dz-message">Logo</div>
           </DropzoneComponent>
         </div>
 
         <div>
-          <button type="submit">Save</button>
+          <button className="btn" type="submit">
+            Save
+          </button>
         </div>
       </form>
     );
