@@ -45,7 +45,7 @@ class PortfolioForm extends Component {
         thumb_image_url,
         banner_image_url,
         logo_url,
-      } = this.portfolioToEdit;
+      } = this.props.portfolioToEdit;
 
       this.props.clearPortfolioToEdit();
 
