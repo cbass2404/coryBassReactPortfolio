@@ -18,6 +18,9 @@ class PortfolioForm extends Component {
       thumb_image: "",
       banner_image: "",
       logo: "",
+      editMode: false,
+      apiUrl: "https://corybass.devcamp.space/portfolio/portfolio_items",
+      apiAction: "post",
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -56,6 +59,9 @@ class PortfolioForm extends Component {
         category: category || "eCommerce",
         position: position || "",
         url: url || "",
+        editMode: true,
+        apiUrl: `https://corybass.devcamp.space/portfolio/portfolio_items/${id}`,
+        apiAction: "patch",
       });
     }
   }
@@ -124,12 +130,12 @@ class PortfolioForm extends Component {
   }
 
   handleSubmit(e) {
-    axios
-      .post(
-        "https://corybass.devcamp.space/portfolio/portfolio_items",
-        this.buildForm(),
-        { withCredentials: true }
-      )
+    axios({
+      method: this.state.apiAction,
+      url: this.state.apiUrl,
+      data: this.buildForm(),
+      withCredentials: true,
+    })
       .then((res) => {
         this.props.handleSuccessfulFormSubmission(res.data.portfolio_item);
 
