@@ -7,7 +7,7 @@ class BlogDetail extends Component {
 
     this.state = {
       currentId: this.props.match.params.slug,
-      BlogItem: {},
+      blogItem: {},
     };
   }
 
@@ -17,7 +17,9 @@ class BlogDetail extends Component {
         `https://corybass.devcamp.space/portfolio/portfolio_blogs/${this.state.currentId}`
       )
       .then((res) => {
-        console.log("response", res);
+        this.setState({
+          blogItem: res.data.portfolio_blog,
+        });
       })
       .catch((err) => {
         console.log("getBlogItem ERROR:", err);
@@ -29,10 +31,17 @@ class BlogDetail extends Component {
   }
 
   render() {
-    console.log("currentId", this.state.currentId);
+    const {
+      title,
+      content,
+      featured_image_url,
+      blog_status,
+    } = this.state.blogItem;
     return (
       <div>
-        <h1>Blog detail</h1>
+        <h1>{title}</h1>
+        <img src={featured_image_url} />
+        <div>{content}</div>
       </div>
     );
   }
