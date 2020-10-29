@@ -67,9 +67,9 @@ class PortfolioForm extends Component {
         editMode: true,
         apiUrl: `https://corybass.devcamp.space/portfolio/portfolio_items/${id}`,
         apiAction: "patch",
-        thumb_image: thumb_image_url || "",
-        banner_image: banner_image_url || "",
-        logo: logo_url || "",
+        thumb_image_url: thumb_image_url || "",
+        banner_image_url: banner_image_url || "",
+        logo_url: logo_url || "",
       });
     }
   }
@@ -228,7 +228,7 @@ class PortfolioForm extends Component {
         </div>
 
         <div className="image-uploaders three-column">
-          {this.state.thumb_image && this.state.editMode ? (
+          {this.state.thumb_image_url && this.state.editMode ? (
             <div className="portfolio-manager-image-wrapper">
               <img src={this.state.thumb_image} />
 
@@ -249,7 +249,7 @@ class PortfolioForm extends Component {
             </DropzoneComponent>
           )}
 
-          {this.state.banner_image && this.state.editMode ? (
+          {this.state.banner_image_url && this.state.editMode ? (
             <div className="portfolio-manager-image-wrapper">
               <img src={this.state.banner_image} />
 
@@ -270,7 +270,7 @@ class PortfolioForm extends Component {
             </DropzoneComponent>
           )}
 
-          {this.state.logo && this.state.editMode ? (
+          {this.state.logo_url && this.state.editMode ? (
             <div className="portfolio-manager-image-wrapper">
               <img src={this.state.logo} />
 
