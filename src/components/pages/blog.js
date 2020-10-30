@@ -23,10 +23,17 @@ class Blog extends Component {
   activateInfiniteScroll() {
     window.onscroll = () => {
       if (
+        this.state.isLoading ||
+        this.state.blogItems.length === this.state.totalCount
+      ) {
+        return;
+      }
+
+      if (
         window.innerHeight + document.documentElement.scrollTop ===
         document.documentElement.offsetHeight
       ) {
-        console.log("get more posts");
+        this.getBlogItems();
       }
     };
   }
@@ -36,12 +43,16 @@ class Blog extends Component {
       currentPage: this.state.currentPage + 1,
     });
     axios
-      .get("https://corybass.devcamp.space/portfolio/portfolio_blogs", {
-        withCredentials: true,
-      })
+      .get(
+        `https://corybass.devcamp.space/portfolio/portfolio_blogs?page=${this.state.currentPage}`,
+        {
+          withCredentials: true,
+        }
+      )
       .then((res) => {
+        console.log("getting", res);
         this.setState({
-          blogItems: res.data.portfolio_blogs,
+          blogItems: this.state.blogItems.concat(res.data.portfolio_blogs),
           totalCount: res.data.meta.total_records,
           isLoading: false,
         });
