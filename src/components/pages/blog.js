@@ -10,6 +10,8 @@ class Blog extends Component {
 
     this.state = {
       blogItems: [],
+      totalCount: 0,
+      currentPage: 0,
     };
 
     this.getBlogItems = this.getBlogItems.bind(this);
@@ -28,6 +30,9 @@ class Blog extends Component {
   }
 
   getBlogItems() {
+    this.setState({
+      currentPage: this.state.currentPage + 1,
+    });
     axios
       .get("https://corybass.devcamp.space/portfolio/portfolio_blogs", {
         withCredentials: true,
@@ -35,6 +40,7 @@ class Blog extends Component {
       .then((res) => {
         this.setState({
           blogItems: res.data.portfolio_blogs,
+          totalCount: res.data.meta.total_records,
         });
       })
       .catch((err) => {
