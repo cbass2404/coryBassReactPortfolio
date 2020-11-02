@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from "axios";
 
 class BlogForm extends Component {
   constructor(props) {
@@ -13,6 +14,15 @@ class BlogForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  buildForm() {
+    let formData = new FormData();
+
+    formData.append("portfolio_blog[title]", this.state.title);
+    formData.append("portfolio_blog[blog_status]", this.state.blog_status);
+
+    return formData;
+  }
+
   handleChange(e) {
     this.setState({
       [e.target.name]: e.target.value,
@@ -20,7 +30,19 @@ class BlogForm extends Component {
   }
 
   handleSubmit(e) {
-    this.props.handleSuccessfullFormSubmission(this.state);
+    axios
+      .post(
+        "https://corybass.devcamp.space/portfolio/portfolio_blogs",
+        this.buildForm(),
+        { withCredentials: true }
+      )
+      .then((res) => {
+        this.props.handleSuccessfullFormSubmission(res.data);
+      })
+      .catch((e) => {
+        console.log("handleSubmit for blog ERROR:", e);
+      });
+
     e.preventDefault();
   }
 
