@@ -82,7 +82,7 @@ class Blog extends Component {
         });
       })
       .catch((err) => {
-        console.log("getBlogItems ERROR:", err);
+        console.log("getBlogItems", err);
       });
   }
 
