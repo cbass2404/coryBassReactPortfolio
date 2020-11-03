@@ -48,12 +48,12 @@ class BlogForm extends Component {
         { withCredentials: true }
       )
       .then((res) => {
-        this.props.handleSuccessfullFormSubmission(res.data.portfolio_blog);
-
         this.setState({
           title: "",
           blog_status: "",
         });
+
+        this.props.handleSuccessfullFormSubmission(res.data.portfolio_blog);
       })
       .catch((e) => {
         console.log("handleSubmit for blog ERROR:", e);
