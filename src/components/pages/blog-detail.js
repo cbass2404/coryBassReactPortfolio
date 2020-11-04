@@ -53,7 +53,9 @@ class BlogDetail extends Component {
 
     const contentManager = () => {
       if (this.state.editMode) {
-        return <BlogForm />;
+        return (
+          <BlogForm editMode={this.state.editMode} blog={this.state.blogItem} />
+        );
       } else {
         return (
           <div className="content-container">
