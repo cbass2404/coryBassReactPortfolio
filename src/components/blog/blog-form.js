@@ -14,6 +14,8 @@ class BlogForm extends Component {
       blog_status: "",
       content: "",
       featured_image: "",
+      apiUrl: "https://corybass.devcamp.space/portfolio/portfolio_blogs",
+      apiAction: "post",
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -45,10 +47,15 @@ class BlogForm extends Component {
 
   componentWillMount() {
     if (this.props.editMode) {
+      const { id, title, blog_status, content } = this.props.blog;
+
       this.setState({
-        id: this.props.blog.id,
-        title: this.props.blog.title,
-        status: this.props.blog.blog_status,
+        id: id,
+        title: title,
+        blog_status: blog_status,
+        content: content,
+        apiUrl: `https://corybass.devcamp.space/portfolio/portfolio_blogs/${this.props.blog.id}`,
+        apiAction: "patch",
       });
     }
   }
@@ -105,12 +112,12 @@ class BlogForm extends Component {
   }
 
   handleSubmit(e) {
-    axios
-      .post(
-        "https://corybass.devcamp.space/portfolio/portfolio_blogs",
-        this.buildForm(),
-        { withCredentials: true }
-      )
+    axios({
+      method: this.state.apiAction,
+      url: this.state.apiUrl,
+      data: this.buildForm(),
+      withCredentials: true,
+    })
       .then((res) => {
         if (this.state.featured_image) {
           this.featuredImageRef.current.dropzone.removeAllFiles();
@@ -122,7 +129,11 @@ class BlogForm extends Component {
           featured_image: "",
         });
 
-        this.props.handleSuccessfullFormSubmission(res.data.portfolio_blog);
+        if (this.props.editMode) {
+          this.props.handleUpdateFormSubmission(res.data.portfolio_blog);
+        } else {
+          this.props.handleSuccessfullFormSubmission(res.data.portfolio_blog);
+        }
       })
       .catch((e) => {
         console.log("handleSubmit for blog ERROR:", e);
