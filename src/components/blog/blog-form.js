@@ -25,8 +25,22 @@ class BlogForm extends Component {
     this.componentConfig = this.componentConfig.bind(this);
     this.djsConfig = this.djsConfig.bind(this);
     this.handleFeaturedImageDrop = this.handleFeaturedImageDrop.bind(this);
-
+    this.deleteImage = this.deleteImage.bind(this);
     this.featuredImageRef = React.createRef();
+  }
+
+  deleteImage(imageType) {
+    axios
+      .delete(
+        `https://api.devcamp.space/portfolio/delete-portfolio-blog-image/${this.props.blog.id}?image_type=${imageType}`,
+        { withCredentials: true }
+      )
+      .then((res) => {
+        this.props.handleFeaturedImageDelete();
+      })
+      .catch((err) => {
+        console.log("DELETE IMAGE ERROR:", err);
+      });
   }
 
   componentWillMount() {
@@ -150,14 +164,26 @@ class BlogForm extends Component {
         </div>
 
         <div className="image-uploaders">
-          <DropzoneComponent
-            ref={this.featuredImageRef}
-            config={this.componentConfig()}
-            djsConfig={this.djsConfig()}
-            eventHandlers={this.handleFeaturedImageDrop()}
-          >
-            <div className="dz-message">Featured Image</div>
-          </DropzoneComponent>
+          {this.props.editMode && this.props.blog.featured_image_url ? (
+            <div className="image-manager-image-wrapper">
+              <img src={this.props.blog.featured_image_url} />
+
+              <div className="image-removal-link">
+                <a onClick={() => this.deleteImage("featured_image")}>
+                  Remove Image
+                </a>
+              </div>
+            </div>
+          ) : (
+            <DropzoneComponent
+              ref={this.featuredImageRef}
+              config={this.componentConfig()}
+              djsConfig={this.djsConfig()}
+              eventHandlers={this.handleFeaturedImageDrop()}
+            >
+              <div className="dz-message">Featured Image</div>
+            </DropzoneComponent>
+          )}
         </div>
 
         <button className="btn">Save</button>

@@ -17,6 +17,15 @@ class BlogDetail extends Component {
     };
 
     this.handleEditClick = this.handleEditClick.bind(this);
+    this.handleFeaturedImageDelete = this.handleFeaturedImageDelete.bind(this);
+  }
+
+  handleFeaturedImageDelete() {
+    this.setState({
+      blogItem: {
+        featured_image_url: "",
+      },
+    });
   }
 
   handleEditClick() {
@@ -54,7 +63,11 @@ class BlogDetail extends Component {
     const contentManager = () => {
       if (this.state.editMode) {
         return (
-          <BlogForm editMode={this.state.editMode} blog={this.state.blogItem} />
+          <BlogForm
+            editMode={this.state.editMode}
+            blog={this.state.blogItem}
+            handleFeaturedImageDelete={this.handleFeaturedImageDelete}
+          />
         );
       } else {
         return (
