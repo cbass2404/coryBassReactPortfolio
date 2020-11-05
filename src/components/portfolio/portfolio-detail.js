@@ -34,19 +34,19 @@ class PortfolioDetail extends Component {
 
   render() {
     const {
-      id,
-      name,
-      description,
-      url,
-      category,
-      thumb_image_url,
       banner_image_url,
+      category,
+      description,
       logo_url,
+      name,
+      thumb_image_url,
+      url,
     } = this.state.portfolioItem;
 
     return (
       <div>
-        <h2>Portfolio Detail for {this.props.match.params.slug}</h2>
+        <h2>{name}</h2>
+        <p>{description}</p>
       </div>
     );
   }
