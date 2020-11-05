@@ -45,7 +45,7 @@ class BlogForm extends Component {
       });
   }
 
-  componentWillMount() {
+  componentDidMount() {
     if (this.props.editMode) {
       const { id, title, blog_status, content } = this.props.blog;
 
