@@ -18,6 +18,32 @@ export default function Contact() {
         <div className="contact-bullet-points">
           <div className="bullet-point-group">
             <div className="icon">
+              <FontAwesomeIcon icon={["fab", "linkedin"]} />
+            </div>
+
+            <a
+              className="text"
+              href="https://www.linkedin.com/in/cory-bass"
+              target="_blank"
+            >
+              LinkedIn
+            </a>
+          </div>
+          <div className="bullet-point-group">
+            <div className="icon">
+              <FontAwesomeIcon icon={["fab", "github"]} />
+            </div>
+
+            <a
+              className="text"
+              href="https://github.com/cbass2404"
+              target="_blank"
+            >
+              GitHub
+            </a>
+          </div>
+          <div className="bullet-point-group">
+            <div className="icon">
               <FontAwesomeIcon icon="phone" />
             </div>
 
