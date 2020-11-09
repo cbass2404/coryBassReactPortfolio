@@ -27,7 +27,11 @@ export default function About() {
           games and simulators, trying out new VR games as they come out,
           playing board games with my children, reading fantasy series,
           researching and learning new things. In the evenings I enjoy playing
-          through the codewars challenge website.
+          through the{" "}
+          <a href="https://www.codewars.com/users/cbass07" target="_blank">
+            codewars challenge website
+          </a>
+          .
         </p>
         <div>
           <ul>
