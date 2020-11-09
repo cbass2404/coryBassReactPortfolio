@@ -47,3 +47,9 @@
   transition: 1s;
   filter: brightness(10%);
 }
+
+@media (max-width: 615px) {
+  .portfolio-items-wrapper {
+    grid-template-columns: 1fr;
+  }
+}

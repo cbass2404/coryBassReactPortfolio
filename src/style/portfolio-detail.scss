@@ -43,3 +43,13 @@
     }
   }
 }
+
+@media (max-width: 615px) {
+  .portfolio-detail-wrapper {
+    .portfolio-detail-description-wrapper {
+      .description {
+        width: 90%;
+      }
+    }
+  }
+}

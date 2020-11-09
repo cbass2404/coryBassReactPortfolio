@@ -21,7 +21,7 @@ export default function Contact() {
               <FontAwesomeIcon icon="phone" />
             </div>
 
-            <div className="text">555-555-5555</div>
+            <div className="text">(601)381-2204</div>
           </div>
 
           <div className="bullet-point-group">

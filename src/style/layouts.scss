@@ -34,3 +34,19 @@
     }
   }
 }
+
+@media (max-width: 615px) {
+  .content-page-wrapper {
+    grid-template-columns: 1fr;
+
+    .left-column {
+      margin: 0px calc((100vw - 400px) / 2);
+      width: 400px;
+      height: 400px;
+    }
+
+    .right-column {
+      padding: 42px calc((100vw - 400px) / 2);
+    }
+  }
+}
