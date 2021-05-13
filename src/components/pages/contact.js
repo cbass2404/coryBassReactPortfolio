@@ -55,7 +55,7 @@ export default function Contact() {
                             <FontAwesomeIcon icon="envelope" />
                         </div>
 
-                        <div className="text">cory.bass.07@gmail.com</div>
+                        <div className="text">cory@bass-dev.com</div>
                     </div>
 
                     <div className="bullet-point-group">
